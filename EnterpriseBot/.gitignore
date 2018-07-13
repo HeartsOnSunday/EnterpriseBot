@@ -2,7 +2,9 @@
 
 
 config.js
+node_modules
 
+/*
 Multiple Search Words
 
 Cybersecurity
@@ -22,6 +24,6 @@ NYTimes
 City of Prov
 State of RI
 NAICS
-
+*/
 
 

@@ -31,6 +31,7 @@ function tweetIt() {
         'Data Breach, #hacked',
         'Steve Wozniak, #netneutrality',
         'Elon Musk, technology',
+        'Microsoft, GitHub',
     ];
     var num = Math.floor(Math.random() * Math.floor(qTopics.length));
     var qTopic = qTopics[num];

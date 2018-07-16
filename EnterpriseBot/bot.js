@@ -6,32 +6,52 @@ var config = require('./config');
 var T = new Twit(config);
 
 //INTERVAL
-setInterval(tweetIt, 1000*60*60*9);
+setInterval(tweetIt, 1000*60*60*1);
 //RUN FUNCTION
 tweetIt();
 //FUNCTION
 function tweetIt() {
     //Generate a topic randomly
     var qTopics = [
-        'cybersecurity', 
-        '#internetofthings, Internet of Things', 
-        "#bigdata", 
+        'cybersecurity',
+        'cybersecurity, #infograph', 
+        '#iot, Internet of Things',
+        'internet of things, #infograph', 
+        '#bigdata',
+        'big data, #infograph', 
         'managed network services', 
         '#iot', 
         '#cybersecurity',
         'new technology',
         '#technology',
+        'technology, #infograph',
         'Malware',
+        'Malware, #infograph',
         'Ransomeware',
+        'Ransomeware, #infographic',
         '#netneutrality',
         'Net Neutrality',
         'Cyber Risk',
+        'Cyber risk, #infographic',
         'Blockchain',
         '#hacked',
-        'Data Breach, #hacked',
+        'Data breach, #infograph',
         'Steve Wozniak, #netneutrality',
         'Elon Musk, technology',
         'Microsoft, GitHub',
+        'Agile',
+        '#agile',
+        'Agile software development',
+        'Deep Learning',
+        'Business intelligence',
+        'Machine Learning',
+        '#infosec',
+        '#iiot',
+        '#Emergingtechnologies',
+        '#4IR',
+        '4th Industrial Revolution',
+
+
     ];
     var num = Math.floor(Math.random() * Math.floor(qTopics.length));
     var qTopic = qTopics[num];
@@ -41,20 +61,27 @@ function tweetIt() {
         result_type: 'recent',
         count: 1,
         }
+        console.log(params);
     //GET posts to RETWEET based on topic
     T.get('search/tweets', params, gotData);
     function gotData(err, data, response) {
-        var retweetId = data.statuses[0].id_str;
-                //POST/RETWEET 
-            T.post('statuses/retweet/:id', {id: retweetId}, function(err, response) {
-                if (response) {
-                    console.log('Retweet Success');
-                }
-                if (err) {
-                    console.log('Error');
-                }
+        if(data /*.statuses[0].id_str*/ == 'undefined'){
+            console.log('null option');
+            tweetIt();
+        } else {
+            console.log(data.statuses[0].id_str);
+            var retweetId = data.statuses[0].id_str;
+                    //POST/RETWEET 
+                T.post('statuses/retweet/:id', {id: retweetId}, function(err, response) {
+                    if (response) {
+                        console.log('Retweet Success');
+                    }
+                    if (err) {
+                        console.log('Error');
+                    }
 
-                });
+                    });
+            }
         }
 
     }

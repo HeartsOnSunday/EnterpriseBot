@@ -6,7 +6,7 @@ var config = require('./config');
 var T = new Twit(config);
 
 //INTERVAL
-setInterval(tweetIt, 1000*60*60*1);
+setInterval(tweetIt, 1000*60*60*2);
 //RUN FUNCTION
 tweetIt();
 //FUNCTION
@@ -87,7 +87,7 @@ function tweetIt() {
     }
 //currently file gets a post about a randomy selected topic from the list
 //the program retweets the content with no message.
-
+r
 //DOES NOT:
     //retweet with comment
 

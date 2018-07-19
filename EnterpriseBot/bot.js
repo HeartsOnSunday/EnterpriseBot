@@ -11,7 +11,7 @@ setInterval(tweetIt, 1000*60*60*2);
 tweetIt();
 //FUNCTION
 function tweetIt() {
-    //Generate a topic randomly
+//Generate a topic randomly
     var qTopics = [
         'cybersecurity',
         'cybersecurity, #infograph', 
@@ -50,8 +50,6 @@ function tweetIt() {
         '#Emergingtechnologies',
         '#4IR',
         '4th Industrial Revolution',
-
-
     ];
     var num = Math.floor(Math.random() * Math.floor(qTopics.length));
     var qTopic = qTopics[num];
@@ -62,32 +60,35 @@ function tweetIt() {
         count: 1,
         }
         console.log(params);
-    //GET posts to RETWEET based on topic
+//GET posts to RETWEET based on topic
     T.get('search/tweets', params, gotData);
     function gotData(err, data, response) {
-        if(data /*.statuses[0].id_str*/ == 'undefined'){
-            console.log('null option');
+        if(err) {
+            console.log('No tweets returned: ' + err);
+            console.log("run tweet it again");
             tweetIt();
-        } else {
+        } else if (data && data.statuses[0]) {
+//IF THE INFO EXISTS            
             console.log(data.statuses[0].id_str);
             var retweetId = data.statuses[0].id_str;
-                    //POST/RETWEET 
+//POST/RETWEET 
                 T.post('statuses/retweet/:id', {id: retweetId}, function(err, response) {
                     if (response) {
                         console.log('Retweet Success');
                     }
                     if (err) {
                         console.log('Error');
-                    }
-
-                    });
-            }
-        }
-
+                        tweetIt();
+                    }   
+                });          
+        } else {
+                console.log('Additional Error');
+                tweetIt();
+                }
+            }        
     }
 //currently file gets a post about a randomy selected topic from the list
 //the program retweets the content with no message.
-r
 //DOES NOT:
-    //retweet with comment
+    
 

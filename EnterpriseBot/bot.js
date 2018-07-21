@@ -1,4 +1,5 @@
-//Users/leahgrace/Documents/HCH/CODE/EnterpriseBot/bot.js
+
+///Users/leahgrace/Documents/HCH/CODE/EnterpriseBot/Heroku/EnterpriseBot/EnterpriseBot/bot.js
 //PACKAGES
 var Twit = require('twit');
 var config = require('./config');

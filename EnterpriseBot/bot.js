@@ -1,4 +1,3 @@
-
 ///Users/leahgrace/Documents/HCH/CODE/EnterpriseBot/Heroku/EnterpriseBot/EnterpriseBot/bot.js
 //PACKAGES
 var Twit = require('twit');
